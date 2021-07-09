@@ -21,5 +21,3 @@ jobs:
       run: |
         rustup component add rust-src --toolchain nightly-x86_64-unknown-linux-gnu
         cargo build --verbose
-    - name: Create build image
-      run: pwd && cargo bootimage
