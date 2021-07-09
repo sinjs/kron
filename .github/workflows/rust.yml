@@ -18,4 +18,6 @@ jobs:
     - name: Set rustup version
       run: rustup override set nightly
     - name: Build
-      run: cargo build --verbose
+      run: |
+        rustup component add rust-src --toolchain nightly-x86_64-unknown-linux-gnu
+        cargo build --verbose
