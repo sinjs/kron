@@ -36,3 +36,6 @@ struct ScreenChar {
     ascii_character: u8,
     color_code: ColorCode,
 }
+
+const BUFFER_HEIGHT: usize = 25;
+const BUFFER_WIDTH: usize = 80;
