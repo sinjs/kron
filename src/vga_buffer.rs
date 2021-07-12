@@ -101,6 +101,7 @@ impl fmt::Write for Writer {
 
 // TODO: Remove this
 pub fn boot_print() {
+    use core::fmt::Write;
     let mut writer = Writer {
         column_position: 0,
         color_code: ColorCode::new(Color::Yellow, Color::Black),
@@ -109,5 +110,6 @@ pub fn boot_print() {
 
     writer.write_byte(b'H');
     writer.write_string("ello ");
-    writer.write_string("World!");
+    writer.write_string("World! ");
+    write!(writer, "Formatting test: {} {} {}", 42, "Beans", 1.0 / 3.0).unwrap();
 }
