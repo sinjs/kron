@@ -97,6 +97,10 @@ impl Writer {
         self.clear_row(BUFFER_HEIGHT - 1);
         self.column_position = 0;
     }
+
+    fn clear_row(&mut self, row: usize) {
+        // TODO: Implement row clearing
+    }
 }
 
 impl fmt::Write for Writer {
