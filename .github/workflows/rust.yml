@@ -14,10 +14,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Set rustup version
+      - name: Install the toolchain
         run: |
-          rustup override set nightly
-          rustup component add rust-src --toolchain nightly-2021-07-06-x86_64-unknown-linux-gnu
+          rustup install nightly-2021-07-06-x86_64-unknown-linux-gnu
+          rustup override set nightly-2021-07-06-x86_64-unknown-linux-gnu
+      - name: Add rust-src
+        run: rustup component add rust-src --toolchain nightly-2021-07-06-x86_64-unknown-linux-gnu
       - name: Build
         run: |
           cargo build --verbose
