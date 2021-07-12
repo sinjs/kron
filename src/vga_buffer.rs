@@ -88,7 +88,14 @@ impl Writer {
     }
 
     fn new_line(&mut self) {
-        // TODO: Implement newlines
+        for row in 1..BUFFER_HEIGHT {
+            for col in 0..BUFFER_WIDTH {
+                let character = self.buffer.chars[row][col].read();
+                self.buffer.chars[row - 1][col].write(character);
+            }
+        }
+        self.clear_row(BUFFER_HEIGHT - 1);
+        self.column_position = 0;
     }
 }
 
