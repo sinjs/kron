@@ -24,10 +24,15 @@ jobs:
         run: |
           cargo build --verbose
 
-  lint:
+  format:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
-      - name: Check formatting
-        run: bash meta/format-check.sh
+      - uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          components: rustfmt
+          override: true
+      - uses: mbrobbel/rustfmt-check@master
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
