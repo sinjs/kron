@@ -1,4 +1,5 @@
 use volatile::Volatile;
+use core::fmt;
 
 #[allow(dead_code)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -88,6 +89,13 @@ impl Writer {
 
     fn new_line(&mut self) {
         // TODO: Implement newlines
+    }
+}
+
+impl fmt::Write for Writer {
+    fn write_str(&mut self, s: &str) -> fmt::Result {
+        self.write_string(s);
+        Ok(())
     }
 }
 
