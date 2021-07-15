@@ -1,4 +1,5 @@
 use core::fmt;
+use lazy_static::lazy_static;
 use volatile::Volatile;
 
 #[allow(dead_code)]
@@ -131,8 +132,10 @@ pub fn boot_print() {
     write!(writer, "Formatting test: {} {} {}", 42, "Beans", 1.0 / 3.0).unwrap();
 }
 
-pub static WRITER: Writer = Writer {
-    column_position: 0,
-    color_code: ColorCode::new(Color::Yellow, Color::Black),
-    buffer: unsafe { &mut *(0xb8000 as *mut Buffer) },
-};
+lazy_static! {
+    pub static ref WRITER: Writer = Writer {
+        column_position: 0,
+        color_code: ColorCode::new(Color::Yellow, Color::Black),
+        buffer: unsafe { &mut *(0xb8000 as *mut Buffer) },
+    };
+}
