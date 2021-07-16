@@ -12,7 +12,7 @@ static MESSAGE: &[u8] = b"Hello from Kron!";
 
 #[cfg(test)]
 fn test_runner(tests: &[&dyn Fn()]) {
-    println!("Running {} tests", tests.len());
+    serial_println!("Running {} tests", tests.len());
     for test in tests {
         test();
     }
@@ -21,9 +21,9 @@ fn test_runner(tests: &[&dyn Fn()]) {
 
 #[test_case]
 fn test_assertion() {
-    print!("Test assertion... ");
+    serial_print!("Test assertion... ");
     assert_eq!(1, 1);
-    println!("OK");
+    serial_println!("OK");
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
