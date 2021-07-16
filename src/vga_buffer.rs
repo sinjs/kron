@@ -142,3 +142,26 @@ pub fn _print(args: fmt::Arguments) {
     use core::fmt::Write;
     WRITER.lock().write_fmt(args).unwrap();
 }
+
+// Tests
+#[test_case]
+fn test_println_simple() {
+    println!("Hello world");
+}
+
+#[test_case]
+fn test_println_many() {
+    for i in 0..200 {
+        println!("Hello world #{}", i);
+    }
+}
+
+#[test_case]
+fn test_println_output() {
+    let s = "Hello kron and the world!";
+    println!("{}", s);
+    for (i, c) in s.chars().enumerate() {
+        let screen_char = WRITER.lock().buffer.chars[BUFFER_HEIGHT - 2][i].read();
+        assert_eq!(char::from(screen_char.ascii_character), c);
+    }
+}
