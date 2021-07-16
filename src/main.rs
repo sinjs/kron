@@ -1,12 +1,13 @@
 #![no_std]
 #![no_main]
+#![feature(custom_test_frameworks)]
+#![test_runner(crate::test_runner)]
+
 use core::panic::PanicInfo;
 mod vga_buffer;
 
 static MESSAGE: &[u8] = b"Hello from Kron!";
 
-#![feature(custom_test_frameworks)]
-#![test_runner(crate::test_runner)]
 #[cfg(test)]
 fn test_runner(tests: &[&dyn Fn()]) {
     println!("Running {} tests", tests.len());
