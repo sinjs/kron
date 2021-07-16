@@ -44,7 +44,6 @@ pub fn exit_qemu(exit_code: QemuExitCode) {
 
 #[no_mangle]
 pub extern "C" fn _start() -> ! {
-    #[cfg(not(test))]
     println!("Hello World{}", "!");
 
     #[cfg(test)]
@@ -53,8 +52,18 @@ pub extern "C" fn _start() -> ! {
     loop {}
 }
 
+#[cfg(not(test))]
 #[panic_handler]
 fn panic(info: &PanicInfo) -> ! {
     println!("{}", info);
+    loop {}
+}
+
+#[cfg(test)]
+#[panic_handler]
+fn panic(info: &PanicInfo) -> ! {
+    serial_println!("FAIL\n");
+    serial_println!("Test failed: {}\n", info);
+    exit_qemu(QemuExitCode::Failed);
     loop {}
 }
