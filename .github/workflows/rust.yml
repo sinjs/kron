@@ -20,6 +20,9 @@ jobs:
           rustup override set nightly-2021-07-06-x86_64-unknown-linux-gnu
       - name: Add rust-src
         run: rustup component add rust-src --toolchain nightly-2021-07-06-x86_64-unknown-linux-gnu
+      - name: Run tests
+        run: |
+          cargo test --verbose
       - name: Build
         run: |
           cargo build --verbose
