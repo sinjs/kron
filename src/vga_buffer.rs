@@ -165,3 +165,18 @@ fn test_println_output() {
         assert_eq!(char::from(screen_char.ascii_character), c);
     }
 }
+
+#[test_case]
+fn test_println_unicode() {
+    println!("äüö¹²³ 😀");
+}
+
+#[test_case]
+fn test_println_wrapping() {
+    println!("Does wrapping work correctly? Does wrapping work correctly? Does wrapping work correctly? Does wrapping work correctly?");
+}
+
+#[test_case]
+fn test_println_newline() {
+    println!("Hello world\nHello world\nHello world");
+}
