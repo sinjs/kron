@@ -5,6 +5,7 @@
 #![reexport_test_harness_main = "test_main"]
 
 use core::panic::PanicInfo;
+mod serial;
 mod vga_buffer;
 
 static MESSAGE: &[u8] = b"Hello from Kron!";
