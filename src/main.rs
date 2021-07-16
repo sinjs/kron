@@ -7,7 +7,16 @@ static MESSAGE: &[u8] = b"Hello from Kron!";
 
 #[no_mangle]
 pub extern "C" fn _start() -> ! {
-    vga_buffer::boot_print();
+    use core::fmt::Write;
+    vga_buffer::WRITER.lock().write_str("Hello kron").unwrap();
+    write!(
+        vga_buffer::WRITER.lock(),
+        ", some numbers: {} {}",
+        42,
+        1.337
+    )
+    .unwrap();
+
     loop {}
 }
 
